@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DeviceExportController;
 use App\Http\Controllers\ExportUsrController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,3 +32,5 @@ Route::post('/userImport', [ExportUsrController::class, 'userImport'])->name('us
 
 Route::get('/device/export', [DeviceExportController::class, 'deviceExport'])->name('device.export');
 Route::post('/device/import', [DeviceExportController::class, 'deviceImport'])->name('device.import');
+
+Route::get('post', [PostController::class, 'index'])->name('post');
