@@ -9,12 +9,13 @@
         @endif
     </div>
 
-    {{-- <section>
+    <section>
         @if($image)
         <img src={{$image}} width="200" />
         @endif
         <input type="file" id="image" wire:change="$emit('fileChoosen')">
-    </section> --}}
+    </section>
+
 
     <form class="my-4 flex" wire:submit.prevent="addComment">
         @error('newComment')
@@ -37,16 +38,16 @@
             </div>
         </div>
         <p class="text-gray-800">{{$comment->comment}}</p> 
-         {{-- @if($comment->image)
-        <img src="{{$comment->imagePath}}" />
-        @endif --}}
+         @if($comment->image)
+         <img src="{{$comment->imagePath}}" style="width: 100px; height:80px;"/>
+        @endif
     </div>
     @endforeach
 
-    {{-- {{$comments->links('pagination-links')}} --}}
+    {{$comments->links('pagination-links')}}
 </div>
 
-{{-- <script>
+<script>
     window.livewire.on('fileChoosen', () => {
         let inputField = document.getElementById('image')
         let file = inputField.files[0]
@@ -56,4 +57,4 @@
         }
         reader.readAsDataURL(file);
     })
-</script> --}}
+</script>

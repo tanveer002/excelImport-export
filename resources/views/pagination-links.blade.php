@@ -1,10 +1,10 @@
-@if ($paginator->hasPages())
+{{-- @if ($paginator->hasPages())
 <ul class="flex justify-between">
     <!-- prev -->
     @if ($paginator->onFirstPage())
-    <li class="w-16 px-2 py-1 text-center rounded border bg-gray-200">Prev</li>
+    <li class="btn btn-sm btn-success shadow border bg-secondary cursor-pointer col-2">Prev</li>
     @else
-    <li class="w-16 px-2 py-1 text-center rounded border shadow bg-white cursor-pointer" wire:click="previousPage">Prev</li>
+    <li class=" btn-sm btn-success shadow border bg-info cursor-pointer col-2" wire:click="previousPage">Prev</li>
     @endif
     <!-- prev end -->
 
@@ -14,9 +14,9 @@
         @if (is_array($element))
         @foreach ($element as $page => $url)
         @if ($page == $paginator->currentPage())
-        <li class="mx-2 w-10 px-2 py-1 text-center rounded border shadow bg-blue-500 text-white cursor-pointer" wire:click="gotoPage({{$page}})">{{$page}}</li>
+        <li class="btn-sm btn-success shadow border bg-info cursor-pointer col-2" wire:click="gotoPage({{$page}})">{{$page}}</li>
         @else
-        <li class="mx-2 w-10 px-2 py-1 text-center rounded border shadow bg-white cursor-pointer" wire:click="gotoPage({{$page}})">{{$page}}</li>
+        <li class="btn-sm btn-success shadow border bg-info cursor-pointer col-2" wire:click="gotoPage({{$page}})">{{$page}}</li>
         @endif
         @endforeach
         @endif
@@ -27,10 +27,61 @@
 
     <!-- next  -->
     @if ($paginator->hasMorePages())
-    <li class="w-16 px-2 py-1 text-center rounded border shadow bg-white cursor-pointer" wire:click="nextPage">Next</li>
+    <li class="btn-sm btn-success shadow border bg-info cursor-pointer col-2" wire:click="nextPage">Next</li>
     @else
-    <li class="w-16 px-2 py-1 text-center rounded border bg-gray-200">Next</li>
+    <li class="btn-sm btn-success shadow border bg-info cursor-pointer col-2">Next</li>
     @endif
     <!-- next end -->
 </ul>
 @endif
+ --}}
+
+<nav aria-label="Page navigation example">
+    @if ($paginator->hasPages())
+        <ul class="pagination">
+        @if ($paginator->onFirstPage())
+            <li class="page-item">
+                <a class="page-link" wire:click="previousPage" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            @else
+            <li class="page-item">
+                <a class="page-link" wire:click="previousPage" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+                </a>
+            </li>
+        @endif
+    @endif
+   
+    @foreach ($elements as $element)
+        @if (is_array($element))
+            @foreach ($element as $page => $url)
+                @if ($page == $paginator->currentPage())
+                    <li class="page-item"><a class="page-link" wire:click="gotoPage({{$page}})">{{$page}}</a></li>
+                @else
+                    <li class="page-item"><a class="page-link" wire:click="gotoPage({{$page}})">{{$page}}</a></li>
+                @endif
+            @endforeach
+        @endif
+    @endforeach
+      
+    @if ($paginator->hasMorePages())
+        <li class="page-item">
+            <a class="page-link" wire:click="nextPage">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+            </a>
+        </li>
+        @else
+        <li class="page-item">
+            <a class="page-link" >
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+            </a>
+        </li>
+    @endif
+    </ul>
+  </nav>
