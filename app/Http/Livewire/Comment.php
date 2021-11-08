@@ -27,6 +27,7 @@ class Comment extends Component
     public function ticketSelected($ticketId)
     {
         $this->ticketId = $ticketId;
+       
     }
 
     public function handleFileUpload($imageData)
@@ -47,10 +48,11 @@ class Comment extends Component
             'comment'              => $this->newComment, 'user_id' => 1,
             'image'             => $image,
             'user_id' => Auth::user()->id,
+            'support_id' => $this->ticketId,
         ]);
-        $this->newComment = '';
-        $this->image      = '';
-        session()->flash('message', 'Comment added successfully 😁');
+        $this->newComment = "";
+        $this->image      = "";
+        session()->flash('message', 'Comment added successfully');
     }
 
     public function storeImage()
@@ -70,14 +72,14 @@ class Comment extends Component
         $comment = Comments::find($commentId);
         Storage::disk('public')->delete($comment->image);
         $comment->delete();
-        session()->flash('message', 'Comment deleted successfully 😊');
+        session()->flash('message', 'Comment deleted successfully');
     }
 
     public function render()
     {
     
     return view('livewire.comment', [
-        'comments' => Comments::latest()->paginate(3),
+        'comments' => Comments::where('support_id', $this->ticketId)->latest()->paginate(3),
     ]);
     }
 }
