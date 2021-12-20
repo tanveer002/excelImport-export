@@ -18,10 +18,17 @@ class QrController extends Controller
        $qrs = Brand::all();
        foreach($qrs as $item){
            
-           $brands = $item->Name;
+        $brands = [
+            'device' => $item->Name,
+            'id' => $item->id
+        ];
+
+        $allbrand = json_encode($brands);
+          
        }
        
-       $qr_code = QrCode::size(250)->generate($brands);
+       
+       $qr_code = QrCode::size(250)->generate($allbrand);
     
         return view('qr.qrcode', compact('qr_code'));
     }
