@@ -15,7 +15,8 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
         "livewire/livewire": "^2.7",
-        "phpoffice/phpspreadsheet": "^1.18"
+        "phpoffice/phpspreadsheet": "^1.18",
+        "simplesoftwareio/simple-qrcode": "^4.2"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

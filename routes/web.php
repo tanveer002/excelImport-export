@@ -1,9 +1,12 @@
 <?php
 
-use App\Http\Controllers\DeviceExportController;
-use App\Http\Controllers\ExportUsrController;
-use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QrController;
+use App\Http\Controllers\PostController;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ExportUsrController;
+use App\Http\Controllers\DeviceExportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +37,9 @@ Route::get('/device/export', [DeviceExportController::class, 'deviceExport'])->n
 Route::post('/device/import', [DeviceExportController::class, 'deviceImport'])->name('device.import');
 
 Route::get('post', [PostController::class, 'index'])->name('post');
+
+Route::resource('category', CategoryController::class);
+Route::post('add-SubCat', [CategoryController::class, 'subcat'])->name('subcat.add');
+
+Route::get('qr-code', [QrController::class, 'index'])->name('qrcode.add');
+
