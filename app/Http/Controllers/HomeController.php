@@ -27,7 +27,13 @@ class HomeController extends Controller
      */
     public function index()
     {
+        
+        return view('home');
+    }
+
+    public function devices()
+    {
         $issues = Series::all();
-        return view('home', compact('issues'));
+        return view('devices', compact('issues'));
     }
 }

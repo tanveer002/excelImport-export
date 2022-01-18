@@ -30,6 +30,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/devices', [App\Http\Controllers\HomeController::class, 'devices'])->name('devices');
 Route::get('/userExport', [ExportUsrController::class, 'usercsv'])->name('user.export');
 Route::post('/userImport', [ExportUsrController::class, 'userImport'])->name('user.import');
 
