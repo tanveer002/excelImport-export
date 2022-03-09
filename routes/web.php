@@ -7,6 +7,10 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ExportUsrController;
 use App\Http\Controllers\DeviceExportController;
+use App\Http\Controllers\GetapiData;
+use App\Http\Controllers\Products;
+use App\Http\Controllers\WebController;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +22,18 @@ use App\Http\Controllers\DeviceExportController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//
+//products
+Route::get('/', [WebController::class, 'index']);
+Route::get('/product{id}', [WebController::class, 'storeProduct'])->name('add.product');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//remove product
+Route::get('/remove/{id}', [WebController::class, 'removeProduct'])->name('remove.product');
+Route::get('/cart', [WebController::class, 'cart'])->name('cart.index');
 
+//checkout
+Route::get('checkout', [WebController::class, 'checkout'])->name('checkout');
+Route::post('checkout', [WebController::class, 'confirmOrder'])->name('confirm.order');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -43,4 +54,12 @@ Route::resource('category', CategoryController::class);
 Route::post('add-SubCat', [CategoryController::class, 'subcat'])->name('subcat.add');
 
 Route::get('qr-code', [QrController::class, 'index'])->name('qrcode.add');
+
+Route::get('getApi', [GetapiData::class, 'index'])->name('api.data');
+
+
+//products
+
+Route::get('/products', [Products::class, 'index'])->name('s.product');
+Route::post('/proucts', [Products::class, 'store'])->name('p.store');
 
