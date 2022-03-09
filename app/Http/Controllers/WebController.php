@@ -74,6 +74,12 @@ class WebController extends Controller
 
     public function confirmOrder(Request $request)
     {
-        dd($request->all());
+        $cart = session()->get('cart');
+        
+        $order_object = JSON.stringfy(json_encode($cart));
+        // foreach($cart as $item){
+        //     $item_data[] = $item['name'];
+        // }
+       dd($order_object);
     }
 }

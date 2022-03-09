@@ -71,18 +71,28 @@
                                         @foreach (session('cart') as $id => $product)
                                             @php
                                             $sub_total = $product['price'] * $product['quantity'];
-                                          
                                             @endphp
-                                            <input type="text" name="product" value="{{$product['name']}}" >
-                                            <input type="text" name="price" value="{{$product['price']}}" >
-                                            <input type="text" name="product" value="{{$product['des']}}" >
-                                            <input type="text" name="quantity" value="{{$product['quantity']}}" >
-
+                                            <div class="card">
+                                                    <div class="col-3">
+                                                        <h3>{{$product['name']}}</h3>
+                                                        <li>
+                                                            Details:{{$product['des']}}
+                                                        </li>
+                                                        <li>
+                                                            Quantity:{{$product['quantity']}}
+                                                        </li>
+                                                        <li>
+                                                           Price: {{$product['price']}}
+                                                        </li>
+                                                </div>
+                                            </div>
                                         @endforeach
                                         @endif
                                 </div>
                                 <div class="col-6">
-                                    <input type="text" name="name">
+                                    <input type="text" name="name" placeholder="Name">
+                                    <input type="email" name="email" placeholder="email">
+                                    <input type="text" name="address" placeholder="address">
                                 </div>
                                 <button class="btn btn-success">submit</button>
                             </div>
