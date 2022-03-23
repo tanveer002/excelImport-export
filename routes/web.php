@@ -34,6 +34,7 @@ Route::get('/cart', [WebController::class, 'cart'])->name('cart.index');
 //checkout
 Route::get('checkout', [WebController::class, 'checkout'])->name('checkout');
 Route::post('checkout', [WebController::class, 'confirmOrder'])->name('confirm.order');
+Route::get('showorder', [WebController::class, 'showOrder'])->name('s.order');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

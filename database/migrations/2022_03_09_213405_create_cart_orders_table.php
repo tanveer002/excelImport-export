@@ -15,15 +15,15 @@ class CreateCartOrdersTable extends Migration
     {
         Schema::create('cart_orders', function (Blueprint $table) {
             $table->id();
-            $table->string('items')->nullable();
-            $table->string('des')->nullable();
-            $table->string('qty')->nullable();
-            $table->string('price')->nullable();
-            $table->string('total_amount')->nullable();
+            
+            
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('address')->nullable();
+            $table->json('order')->nullable();
+            $table->string('total_amount')->nullable();
             $table->string('status')->default(0);
+
             $table->timestamps();
         });
     }

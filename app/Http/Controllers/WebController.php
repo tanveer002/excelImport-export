@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CartOrder;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -75,11 +76,22 @@ class WebController extends Controller
     public function confirmOrder(Request $request)
     {
         $cart = session()->get('cart');
+       $orders = new CartOrder();
+       $orders->name = $request->name;
+       $orders->email = $request->email;
+       $orders->address = $request->address;
+        $orders->order = json_encode($cart);
+        $orders->save();
+
+        return redirect()->back();
         
-        $order_object = JSON.stringfy(json_encode($cart));
-        // foreach($cart as $item){
-        //     $item_data[] = $item['name'];
-        // }
-       dd($order_object);
+        
+    }
+
+    public function showOrder()
+    {
+        $orders = CartOrder::all();
+        // dd($orders);
+        return view('showorder', compact('orders'));
     }
 }

@@ -9,6 +9,7 @@
             <a href="{{ route('devices') }}" class="btn btn-success">Devices</a>
             <a href="{{ route('api.data')}}" class="btn btn-success">Api Data</a>
             <a href="{{route('s.product')}}" class="btn btn-success"> Products</a>
+            <a href="{{route('s.order')}}" class="btn btn-success"> Orders</a>
         </div>
     </div> 
 </div>
